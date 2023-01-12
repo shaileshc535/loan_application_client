@@ -1,0 +1,25 @@
+/*noinspection ALL*/
+@tailwind base;
+/*noinspection ALL*/
+@tailwind components;
+/*noinspection ALL*/
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background-color: #ffffff;
+  font-weight: 500;
+  color: #27221f;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

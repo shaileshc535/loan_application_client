@@ -1,0 +1,20 @@
+.heading {
+    font-weight: 600;
+    letter-spacing: 0.02em
+}
+
+.heading.color-primary {
+    color: #CB9D54;
+}
+
+.lh-30 {
+    line-height: 30px !important;
+}
+
+.font-15 {
+    font-size: 15px !important;
+}
+
+.lh-24 {
+    line-height: 24px !important;
+}
