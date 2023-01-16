@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import IcomoonReact from 'icomoon-react';
 import iconSet from './selection.json';

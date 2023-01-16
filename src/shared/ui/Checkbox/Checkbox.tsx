@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { InputHTMLAttributes } from 'react';
 
 const Checkbox: React.FC<InputHTMLAttributes<HTMLInputElement>> = ({ ...rest }) => (

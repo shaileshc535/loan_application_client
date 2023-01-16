@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { ReactNode, useState } from 'react';
 import classNames from 'classnames';
 import Heading from '../Heading/Heading';

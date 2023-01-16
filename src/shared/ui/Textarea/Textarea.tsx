@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { TextareaHTMLAttributes } from 'react';
 import classNames from 'classnames';
 

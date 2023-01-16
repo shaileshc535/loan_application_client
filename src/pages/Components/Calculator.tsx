@@ -1,7 +1,7 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-unneeded-ternary */
 /* eslint-disable no-console */
 /* eslint-disable prefer-destructuring */
-/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';

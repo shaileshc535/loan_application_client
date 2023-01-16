@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { MouseEventHandler } from 'react';
 import classNames from 'classnames';
 import { Icon } from '../Icon/Icon';

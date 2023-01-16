@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { ToastContainer, Slide } from 'react-toastify';
 

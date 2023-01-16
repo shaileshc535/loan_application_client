@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {
   BaseQueryFn,

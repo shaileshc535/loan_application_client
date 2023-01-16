@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { MouseEvent } from 'react';
 
 export const selectCheckboxViaParent = (e: MouseEvent<HTMLElement>, preventDefault = true) => {

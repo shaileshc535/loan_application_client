@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';

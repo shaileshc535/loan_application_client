@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export const capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 export const formatPhoneNumber = (phone: string | undefined) => {

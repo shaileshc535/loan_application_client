@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import classNames from 'classnames';
 import React from 'react';
 import { Text } from '../Global/Typography';

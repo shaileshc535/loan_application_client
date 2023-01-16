@@ -139,7 +139,5 @@ export default Home;
 </div>;
 
 <div className="card-header">
-  <h3 className="font-semibold text">
-    In usu laoreet repudiare legendos
-  </h3>
+  <h3 className="font-semibold text">In usu laoreet repudiare legendos</h3>
 </div>;

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export { TextRow, AccentBlock, Divider, Overlay, Container } from './Global/Layout';
 export { Text } from './Global/Typography';
 export { Icon } from './Icon/Icon';
