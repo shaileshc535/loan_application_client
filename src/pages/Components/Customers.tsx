@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Heading from '../../shared/ui/Heading/Heading';
 import People1 from '../../../public/people1.png';
 import People2 from '../../../public/people2.png';
@@ -82,15 +83,15 @@ const Customers: React.FC = () => {
               title="Since launching in 2016, over 3,000,000 people have used PiggyVest to manage their money better, avoid over-spending and be more accountable."
               type="sm"
               color="primary"
-              classes="text-black font-normal pt-4 max-w-[410px] transform transition duration-300 hover:scale-105"
+              classes="text-black font-normal pt-4 mb-10 max-w-[410px] transform transition duration-300 hover:scale-105"
             />
             <div>
-              <button
-                type="button"
-                className="mt-11 shadow-lg text-white bg-bordercolor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-3.5 text-center mr-3 md:mr-0 transform transition duration-300 hover:scale-110"
+              <Link
+                href="/auth/signup/"
+                className="shadow-lg text-white bg-bordercolor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-3.5 text-center mr-3 md:mr-0 transform transition duration-300 hover:scale-110"
               >
                 create free account
-              </button>
+              </Link>
             </div>
             <div className="flex">
               <div className="pt-10">

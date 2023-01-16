@@ -44,7 +44,7 @@ const Home: NextPage = () => (
             />
 
             <Link
-              href="/auth/signin/"
+              href="/auth/signup/"
               className="text-white bg-bordercolor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-7 py-3.5 text-center mr-3 md:mr-0 transform transition duration-300 hover:scale-110"
             >
               Create free account

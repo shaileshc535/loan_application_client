@@ -52,7 +52,7 @@ const Home: NextPage = () => (
             />
 
             <Link
-              href="/auth/signin/"
+              href="/auth/signup/"
               className="text-white bg-bordercolor focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-7 py-3.5 text-center mr-3 md:mr-0 transform transition duration-300 hover:scale-110"
             >
               Create free account
@@ -154,7 +154,7 @@ const Home: NextPage = () => (
                       </div>
 
                       <Link
-                        href="/auth/signin/"
+                        href="/auth/signup/"
                         className="lg:mt-8 py-3 lg:py-4 px-4 lg:px-8 bg-white font-bold text-indigo-700 rounded-lg text-sm lg:text-lg xl:text-xl hover:bg-opacity-90 focus:ring-2 focus:ring-offset-2 focus:ring-white focus:outline-none"
                       >
                         Create free account

@@ -361,12 +361,12 @@ const Calculator: React.FC = () => {
             </div>
 
             <div className="mt-12 flex justify-center">
-              <button
+              <Link
                 className="bg-[#2A94F4] py-4 px-6 text-white text-2xl rounded-xl transform transition duration-300 hover:scale-110"
-                type="submit"
+                href="/auth/signup/"
               >
                 Apply Now
-              </button>
+              </Link>
             </div>
           </div>
         </div>
