@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable no-else-return */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/button-has-type */
 /* eslint-disable prettier/prettier */
@@ -7,49 +8,41 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Heading from '../../shared/ui/Heading/Heading';
+import Accordian from '../../shared/ui/Accordion/Accordian';
 import Header from '../../shared/ui/Header/Header';
+import { Loader } from '../../shared/ui/Loader/Loader';
 import Footer from '../../shared/ui/Footer/Footer';
 import FaqBackground from '../../../public/faq-bg.png';
 import { useGetAllFaqMutation } from '../../shared/api/faqApi/faqApi';
 
 const Home: NextPage = () => {
-  const [box1, setBox1] = useState(false);
-  const [box2, setBox2] = useState(false);
-  const [box3, setBox3] = useState(false);
-  const [box4, setBox4] = useState(false);
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [errorMsg, setErrorMsg] = useState<string>('');
-  const [successMsg, setSuccessMsg] = useState<string>('');
-  const [faq, setFaq] = useState([]);
+  const [page] = useState(1);
+  const [limit] = useState(10);
 
-  const [getAlllFaq, { data, isError, isSuccess, error, isLoading }] = useGetAllFaqMutation();
+  const [getAllFaq, { data, isLoading }] = useGetAllFaqMutation();
 
-  // const GetData = async () => {
-  //   try {
-  //     await getAlllFaq({ page, limit });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const GetData = async () => {
+    try {
+      await getAllFaq({
+        page,
+        limit,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   GetData();
-  // }, []);
+  useEffect(() => {
+    GetData();
+  }, []);
 
-  // useEffect(() => {
-  //   if (data && data.length > 0) {
-  //     console.log('data', data);
-  //   }
-
-  //   if (isError) {
-  //     setErrorMsg(error.data.message);
-  //   }
-
-  //   if (isSuccess) {
-  //     setSuccessMsg(data.message);
-  //   }
-  // }, [data, isError]);
+  if (isLoading) {
+    return (
+      <div className="container max-w-6xl mt-12 p-6 mx-auto space-y-6 sm:space-y-12">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -70,8 +63,7 @@ const Home: NextPage = () => {
             alt="blue pattern background"
             className="absolute w-full h-64 md:h-96 object-center object-fit z-0"
           />
-          {errorMsg && <p style={{ color: 'red', marginBottom: '40px' }}>{errorMsg}</p>}
-          {successMsg && <p style={{ color: 'green', marginBottom: '40px' }}>{successMsg}</p>}
+
           <div className="relative flex flex-col items-center justify-center sm:px-0 px-6 z-20 pb-32">
             <div className="md:py-36 py-20">
               <Heading
@@ -81,288 +73,23 @@ const Home: NextPage = () => {
                 classes="text-[#fff] font-semibold cursor-pointer pb-2"
               />
             </div>
+
             <div className="lg:w-1/2 md:w-8/12 sm:w-9/12 w-full">
-              <div className="bg-white shadow rounded p-8">
-                <div
-                  className="flex items-center justify-between cursor-pointer"
-                  onClick={() => setBox1(!box1)}
-                >
-                  <div>
-                    <Heading
-                      title="Why should I use your service?"
-                      type="md"
-                      color="primary"
-                      classes="text-bordercolor font-semibold cursor-pointer pb-2"
-                    />
-                  </div>
-
-                  <button className="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer">
-                    {box1 ? (
-                      <svg
-                        role="button"
-                        aria-label="close dropdown"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 5L5 1L9 5"
-                          stroke="#4B5563"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        width="10"
-                        role="button"
-                        aria-label="open dropdown"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#4B5563"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-
-                {box1 && (
-                  <ul className="">
-                    <li>
-                      <Heading
-                        title="If you want to choose Pro or Business plan the you can use all payments. You
-                      can pay from Paypal, Payoneer, Master Card, Debit Card."
-                        type="sm"
-                        color="primary"
-                        classes="text-bordercolor font-normal cursor-pointer pb-2"
+              {data &&
+                data.map(
+                  (item: { title: string; description: any }, i: React.Key | null | undefined) => (
+                    <div className="bg-white shadow rounded p-8 m-4 cursor-pointer" key={i}>
+                      <Accordian
+                        title={item.title}
+                        content={item.description}
+                        footer=""
+                        classes="cursor-pointer"
+                        titleType="heading"
+                        descriptionType="lg"
                       />
-                    </li>
-                  </ul>
+                    </div>
+                  )
                 )}
-              </div>
-
-              <div className="bg-white shadow rounded p-8 mt-8">
-                <div
-                  className="flex items-center justify-between cursor-pointer"
-                  onClick={() => setBox2(!box2)}
-                >
-                  <div>
-                    <Heading
-                      title="What payment method I can use?"
-                      type="md"
-                      color="primary"
-                      classes="text-bordercolor font-semibold cursor-pointer pb-2"
-                    />
-                  </div>
-                  <button
-                    data-menu
-                    className="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer"
-                  >
-                    {box2 ? (
-                      <svg
-                        role="button"
-                        aria-label="close dropdown"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 5L5 1L9 5"
-                          stroke="#4B5563"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        width="10"
-                        role="button"
-                        aria-label="open dropdown"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#4B5563"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-                {box2 && (
-                  <ul>
-                    <li>
-                      <Heading
-                        title="If you want to choose Pro or Business plan the you can use all payments. You
-                      can pay from Paypal, Payoneer, Master Card, Debit Card."
-                        type="sm"
-                        color="primary"
-                        classes="text-bordercolor font-normal cursor-pointer pb-2"
-                      />
-                    </li>
-                  </ul>
-                )}
-              </div>
-              <div className="bg-white shadow rounded p-8 mt-8">
-                <div
-                  className="flex items-center justify-between cursor-pointer"
-                  onClick={() => setBox3(!box3)}
-                >
-                  <div>
-                    <Heading
-                      title="Is your service safe to use?"
-                      type="md"
-                      color="primary"
-                      classes="text-bordercolor font-semibold cursor-pointer pb-2"
-                    />
-                  </div>
-                  <button
-                    data-menu
-                    className="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer"
-                  >
-                    {box3 ? (
-                      <svg
-                        role="button"
-                        aria-label="close dropdown"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 5L5 1L9 5"
-                          stroke="#4B5563"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        width="10"
-                        role="button"
-                        aria-label="open dropdown"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#4B5563"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-                {box3 && (
-                  <ul>
-                    <li>
-                      <Heading
-                        title="If you want to choose Pro or Business plan the you can use all payments. You
-                      can pay from Paypal, Payoneer, Master Card, Debit Card."
-                        type="sm"
-                        color="primary"
-                        classes="text-bordercolor font-normal cursor-pointer pb-2"
-                      />
-                    </li>
-                  </ul>
-                )}
-              </div>
-
-              <div className="bg-white shadow rounded p-8 mt-8">
-                <div
-                  className="flex items-center justify-between cursor-pointer"
-                  onClick={() => setBox4(!box4)}
-                >
-                  <div>
-                    <Heading
-                      title=" How to recover password?"
-                      type="md"
-                      color="primary"
-                      classes="text-bordercolor font-semibold cursor-pointer pb-2"
-                    />
-                  </div>
-                  <button
-                    data-menu
-                    className="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer"
-                  >
-                    {box4 ? (
-                      <svg
-                        role="button"
-                        aria-label="close dropdown"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 5L5 1L9 5"
-                          stroke="#4B5563"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        width="10"
-                        role="button"
-                        aria-label="open dropdown"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#4B5563"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-                {box4 && (
-                  <ul>
-                    <li>
-                      <Heading
-                        title="If you want to choose Pro or Business plan the you can use all payments. You
-                      can pay from Paypal, Payoneer, Master Card, Debit Card."
-                        type="sm"
-                        color="primary"
-                        classes="text-bordercolor font-normal cursor-pointer pb-2"
-                      />
-                    </li>
-                  </ul>
-                )}
-              </div>
             </div>
           </div>
         </div>

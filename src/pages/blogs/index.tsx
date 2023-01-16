@@ -7,6 +7,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import moment from 'moment';
 import Heading from '../../shared/ui/Heading/Heading';
+import { Loader } from '../../shared/ui/Loader/Loader';
 import Header from '../../shared/ui/Header/Header';
 import Footer from '../../shared/ui/Footer/Footer';
 import { useGetAllBlogMutation } from '../../shared/api/blogApi/blogApi';
@@ -44,14 +45,12 @@ const Home: NextPage = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="container max-w-6xl mt-12 p-6 mx-auto space-y-6 sm:space-y-12">
+        <Loader />
+      </div>
+    );
   }
-
-  if (!data || !data.getAllBlog) {
-    return <div>No data found</div>;
-  }
-
-  const blogData = data.getAllBlog;
 
   return (
     <div>
@@ -106,7 +105,8 @@ const Home: NextPage = () => {
                           i: React.Key | null | undefined
                         ) => (
                           <div key={i} className="pb-20">
-                            <Link href="/blogs/[blog]" as={`/blogs/${item._id}`}>
+                            {/* <Link href="/blogs/[blog]" as={`/blogs/${item._id}`}> */}
+                            <Link href="/blogs/" as={`/blogs/${item._id}`}>
                               <img
                                 src={item.main_image}
                                 alt="woman smiling"
@@ -118,7 +118,8 @@ const Home: NextPage = () => {
                               {item.title}
                             </h2>
                             <div className="mt-6 flex items-center">
-                              <Link href="/blogs/[blog]" as={`/blogs/${item._id}`} className="flex">
+                              {/* <Link href="/blogs/[blog]" as={`/blogs/${item._id}`} className="flex"> */}
+                              <Link href="/blogs/[blog" as={`/blogs/${item._id}`} className="flex">
                                 <p className="pr-3 text-base font-medium leading-4 underline text-gray-800">
                                   5 min read
                                 </p>
@@ -158,7 +159,9 @@ const Home: NextPage = () => {
                       )}
                   </div>
                 ) : (
-                  <div>loader</div>
+                  <div className="container max-w-6xl mt-12 p-6 mx-auto space-y-6 sm:space-y-12">
+                    <Loader />
+                  </div>
                 )}
               </div>
             </div>

@@ -7,7 +7,10 @@ export interface BlogType {
   description: string | null;
   summary: string | null;
   main_image: string | null;
+  createdAt: string | null;
+  [blog: string]: any;
   _id: string;
+  data?: any;
 }
 
 export interface BlogNewType {
@@ -25,18 +28,22 @@ export interface BlogPayload {
   success?: true;
   totalPages?: any;
   total?: any;
-  data?: [];
-  // data: [
-  //   {
-  //     _id: string;
-  //     author?: string;
-  //     category?: string;
-  //     title?: string;
-  //     description?: string;
-  //     summary?: string;
-  //     main_image?: string;
-  //   }
-  // ];
+  // data?: [];
+  _id?: any;
+  blog?: any;
+  blogId?: any;
+  data?: [
+    {
+      _id: string;
+      author?: string;
+      category?: string;
+      title?: string;
+      description?: string;
+      summary?: string;
+      main_image?: string;
+      createdAt?: string;
+    }
+  ];
 }
 
 export interface BlogCategoryType {

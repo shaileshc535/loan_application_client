@@ -24,6 +24,7 @@ const Accordion: React.FC<AccordionInterface> = ({
   descriptionType,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
+
   return (
     <div className={classNames(classes)}>
       <div className="row align-items-center">
